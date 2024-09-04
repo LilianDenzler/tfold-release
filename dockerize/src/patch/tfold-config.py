@@ -5,7 +5,7 @@
 data_dir = "/tfold-src/data"
 
 # a tmp folder to store data from blastp alignments
-seq_tools_tmp_dir = "/tfold-src/tmp"
+seq_tools_tmp_dir = "/tmp"
 ##########################################################################################################
 
 # seq_tools
