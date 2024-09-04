@@ -3,16 +3,18 @@
 
 import os
 import pickle
+import re
+import time
+
 import numpy as np
 import pandas as pd
-import time
-import re
+
+from tfold.config import data_dir
+from tfold.utils import pdb_tools
 
 #from matplotlib import pyplot as plt
 #from sklearn.linear_model import LassoCV
 
-from tfold.utils import pdb_tools
-from tfold.config import data_dir
 
 #COLLECT RESULTS
 def _get_pep_lddts(lddts,pdbnums):
@@ -74,7 +76,7 @@ def parse_results(ctarget_dir):
         df2.update({'pep_CA':[],'pep_all':[],'mhc_CA':[],'mhc_all':[]})
     #collect
     for pmhc_id in os.listdir(ctarget_dir+'/outputs'):
-        pmhc_id=float(pmhc_id)
+        pmhc_id=int(pmhc_id)
         for result_filename in os.listdir(ctarget_dir+f'/outputs/{pmhc_id}'):
             if result_filename.endswith('.pkl'):
                 model_id=int(result_filename[:-4].split('_')[-1]) #assume use exactly one AF model
