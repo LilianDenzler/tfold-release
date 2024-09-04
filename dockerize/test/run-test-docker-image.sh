@@ -7,31 +7,15 @@ AFPARAMDIR='/mnt/bob/shared/alphafold/params'
 imageName="tfold:latest"
 
 # ------------------------------------------------------------------------------
-# Test case 1
+# Run docker container
 # ------------------------------------------------------------------------------
 docker run --rm \
-  --gpus '"device=1"' \
+  --gpus '"device=0"' \
   -v $BASE/input:/input \
-  -v $BASE/out:/output \
+  -v $BASE/out-docker:/output \
   -v $DATADIR:/tfold-src/data \
   -v $AFPARAMDIR:/tfold-src/alphafold/parameters/params \
   $imageName \
-  --csv_file /input/pMHC_sequence.csv \
+  --csv_file /input/tfold_input_mhcallele_with_seqtest.csv \
   --outdir /output \
-  --date_cutoff "" \
   --inference
-
-
-# ------------------------------------------------------------------------------
-# Test case 2
-# ------------------------------------------------------------------------------
-# docker run --rm \
-#   --gpus '"device=0"' \
-#   -v $BASE/input:/input \
-#   -v $BASE/out-vdj:/output \
-#   -v $DATADIR:/tfold-src/data \
-#   -v $AFPARAMDIR:/tfold-src/alphafold/parameters/params \
-#   $imageName \
-#   --csv_file /input/VDJDB_pMHC_input.csv \
-#   --outdir /output \
-#   --date_cutoff ""
