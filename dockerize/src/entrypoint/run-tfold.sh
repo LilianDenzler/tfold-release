@@ -197,7 +197,7 @@ for file in "$SPLIT_DIR"/*.csv; do
   # writes to $outDir/inputs/
   echo "Processing $file"
   print_msg "Running the model_pmhcs.py script ..."
-  python model_pmhcs.py \
+  python $BASE/model_pmhcs.py \
     "$file" \
     "$outDir"
   print_msg "Running the model_pmhcs.py script ... Done"
@@ -205,12 +205,12 @@ for file in "$SPLIT_DIR"/*.csv; do
   print_msg "Running the tfold_run_alphafold.py script ..."
   # if inference is set to true, run the inference mode
   if [[ $inference == true ]]; then
-    python tfold_run_alphafold.py \
+    python $BASE/tfold_run_alphafold.py \
       --inputs "$outDir/inputs/input.pckl" \
       --output_dir "$outDir/outputs" \
       --inference
   else
-    python tfold_run_alphafold.py \
+    python $BASE/tfold_run_alphafold.py \
       --inputs "$outDir/inputs/input.pckl" \
       --output_dir "$outDir/outputs"
   fi
