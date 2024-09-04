@@ -1,0 +1,69 @@
+Bootstrap: docker
+From: nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
+
+%setup
+    # Directory setup if needed for mounting purposes
+    mkdir -p ${SINGULARITY_ROOTFS}/tfold-src/tmp
+    mkdir -p ${SINGULARITY_ROOTFS}/tfold-src/data/seq_tools
+
+%post
+    # Update and install necessary utilities
+    apt-get update && apt-get install -yq \
+        zsh sudo curl wget jq vim git-core gnupg locales \
+        ncbi-blast+ \
+        && apt-get clean
+
+    # Install Oh-My-Zsh
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" || true \
+        && chsh -s /bin/zsh
+
+    # Install Miniconda
+    curl -LO "http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh" \
+        && bash Miniconda3-latest-Linux-x86_64.sh -p /miniconda -b \
+        && rm Miniconda3-latest-Linux-x86_64.sh
+
+    # Set up environment path for conda
+    export PATH=/miniconda/bin:${PATH}
+
+    # Set up directory structure inside container
+    mkdir -p /tfold-src/alphafold/parameters/params
+    mkdir -p /input
+    mkdir -p /output
+    chmod 777 /input
+    chmod 777 /output
+
+    # copy src files
+    cp -r /stage/tfold-src/*  /tfold-src/
+
+    # Make the bash script executable
+    chmod +x /tfold-src/run-tfold.sh
+
+    # Create conda environment from environment.yml
+    zsh -c "/miniconda/bin/conda env create -f /tfold-release/tfold-env.yml"
+
+%files
+    # Copy the tfold environment file
+    dockerize/tfold-env.yml /tfold-release/tfold-env.yml
+
+    # Copy src files into the container
+    collect_results.py                        /stage/tfold-src/
+    model_pmhcs.py                            /stage/tfold-src/
+    tfold_msa_tools.py                        /stage/tfold-src/
+    tfold_run_alphafold.py                    /stage/tfold-src/
+    tfold                                     /stage/tfold-src/tfold
+    tfold_patch                               /stage/tfold-src/tfold_patch
+    alphafold/alphafold                       /stage/tfold-src/alphafold
+    alphafold/LICENSE                         /stage/tfold-src/alphafold
+    alphafold/README.md                       /stage/tfold-src/alphafold
+    alphafold/CONTRIBUTING.md                 /stage/tfold-src/alphafold
+    alphafold/run_alphafold_test.py           /stage/tfold-src/alphafold
+    alphafold/requirements.txt                /stage/tfold-src/alphafold
+    alphafold/setup.py                        /stage/tfold-src/alphafold
+    alphafold/run_alphafold.py                /stage/tfold-src/alphafold
+    dockerize/src/patch/tfold-config.py       /stage/tfold-src/tfold/config.py
+    dockerize/src/patch/tfold-patch-config.py /stage/tfold-src/tfold_patch/tfold_config.py
+    dockerize/src/entrypoint/run-tfold.sh     /stage/tfold-src/
+
+%environment
+    # Export environment variables for conda
+    export PATH=/miniconda/bin:${PATH}
