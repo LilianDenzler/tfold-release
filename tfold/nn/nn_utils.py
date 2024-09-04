@@ -1,6 +1,6 @@
 def generate_registers_I(l):
     '''
-    generate all admissible pairs of tails for a cl II pep of length l;
+    generate all admissible pairs of tails for a cl I pep of length l;
     assume only combinations (0,x) and (x,0) allowed, to avoid quadratic proliferaton of registers;
     experimentally, there is only one structure with tails (-1,1) violating this rule
     '''
@@ -21,9 +21,8 @@ def generate_registers_II(l):
     and no structures with bulged or stretched binding core, except possibly for pig MHC or such
     '''
     if l<9:
-        raise ValueError('peplen<9 not allowed for cl II')    
+        raise ValueError('peplen<9 not allowed for cl II')
     registers=[]
     for i in range(l-8):
         registers.append((i,l-i-9))
     return registers
-    

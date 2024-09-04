@@ -3,29 +3,23 @@
 
 #tfold data folder
 #e.g. '/data/vmikhayl/tfold-release/data'
-data_dir=#
+data_dir='/home/lilian/TCR_interface/tfold-release/data'
 
 #a tmp folder to store data from blastp alignments
-seq_tools_tmp_dir=#
+seq_tools_tmp_dir='/home/lilian/TCR_interface/tfold-release/tmp'
 ##########################################################################################################
 ##########################################################################################################
 ##########################################################################################################
-
-
-
-
-
-
 
 #seq_tools
 seq_tools_data_dir=data_dir+'/seq_tools'                  #path to data
 
-#TFold comes with a python wrapper for netMHCpan-4.1/IIpan-3.4,4.0. 
+#TFold comes with a python wrapper for netMHCpan-4.1/IIpan-3.4,4.0.
 #If you want to use it, set variables below. Otherwise, these variables aren't be used.
 
 #netmhc_tools
 # path to netMHCpan-4.1 and netMHCIIpan-4.1
-netmhcpanI_dir ='/home/vmikhayl/netMHCpan-4.1'  
+netmhcpanI_dir ='/home/vmikhayl/netMHCpan-4.1'
 netmhcpanII_dir='/home/vmikhayl/netMHCIIpan-4.1'
 netmhcpanII_old_dir='/home/vmikhayl/netMHCIIpan-3.2'
 
@@ -39,7 +33,7 @@ seqnn_params={'max_core_len_I':12,    #peptide input length is this +2  #(core t
               'n_mhc_I':26,           #mhc pseudoseq length
               'n_mhc_II':30,          #mhc pseudoseq length
               'n_tail_bits':3         #n bits to encode tails; shared between cl 1 and 2
-             } 
+             }
 
 #seqnn params, weights and model lists
 seqnn_obj_dir=data_dir+'/obj/seqnn'
@@ -49,9 +43,9 @@ af_input_params={'I':
                  {
                   'templates_per_register':20,
                   'pep_gap_penalty':1,
-                  'mhc_cutoff':20,  
+                  'mhc_cutoff':20,
                   'score_cutoff':None,
-                  'kd_threshold':10., 
+                  'kd_threshold':10.,
                   'use_mhc_msa':False,
                   'use_paired_msa':True,
                   'tile_registers':False,
@@ -63,7 +57,7 @@ af_input_params={'I':
                   'pep_gap_penalty':1,
                   'mhc_cutoff':25,
                   'score_cutoff':None,
-                  'kd_threshold':100.,  
+                  'kd_threshold':100.,
                   'use_mhc_msa':False,
                   'use_paired_msa':True, #added 2022-11-22 (discovery run_11)
                   'tile_registers':False,
