@@ -3,10 +3,12 @@
 
 #tfold data folder
 #e.g. '/data/vmikhayl/tfold-release/data'
-data_dir='/home/lilian/TCR_interface/tfold-release/data'
+# data_dir='/mnt/bob/lilian/data/tfold-release/data'
+data_dir='/mnt/bob/lilian/data/tfold-release/data'
 
 #a tmp folder to store data from blastp alignments
-seq_tools_tmp_dir='/home/lilian/TCR_interface/tfold-release/tmp'
+# seq_tools_tmp_dir='/tmp'
+seq_tools_tmp_dir='/tmp'
 ##########################################################################################################
 ##########################################################################################################
 ##########################################################################################################

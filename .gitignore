@@ -137,3 +137,6 @@ tfold_full_seq_.log
 tfold_rest.log
 tfold_rest2.log
 tfold_input_mhcallele_with_seq.csv
+out
+experiments/prepare-input/README.md
+experiments/prepare-input/src/mhc_allele_to_seq.py

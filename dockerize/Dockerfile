@@ -1,5 +1,6 @@
 # Use the NVIDIA CUDA base image
-FROM nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
+# FROM nvidia/cuda:11.6.2-cudnn8-devel-ubuntu20.04
+FROM nvidia/cuda:12.2.2-cudnn8-devel-ubuntu22.04
 
 # Set the working directory
 WORKDIR /tfold-release

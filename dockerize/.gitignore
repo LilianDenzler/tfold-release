@@ -1,1 +1,4 @@
 *.sif
+job-scripts
+test/out-docker
+test/test-out

@@ -61,7 +61,8 @@ function getStemName() {
 BASE=$(dirname $(realpath $0))
 
 # NOTE: Change this ROOT path to your project root path
-ROOT="/home/lilian/TCR_interface/tfold-release"
+ROOT=$(dirname $(dirname $(dirname $(dirname $(realpath $0)))))
+echo $ROOT
 
 ##############################################################################
 # MAIN                                                                       #

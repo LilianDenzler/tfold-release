@@ -9,10 +9,10 @@ imageName="tfold:latest"
 # ------------------------------------------------------------------------------
 # Run docker container
 # ------------------------------------------------------------------------------
-docker run --rm \
+docker run --rm -it \
   --gpus '"device=0"' \
   -v $BASE/input:/input \
-  -v $BASE/out-docker:/output \
+  -v $BASE/test-out:/output \
   -v $DATADIR:/tfold-src/data \
   -v $AFPARAMDIR:/tfold-src/alphafold/parameters/params \
   $imageName \

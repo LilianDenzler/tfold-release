@@ -190,7 +190,7 @@ echo "tmpDir: $tmpDir"
 
 # run the container
 docker run --rm \
-  --gpus '"device=1"' \
+  --gpus '"device=0"' \
   -v $tmpDir:/input \
   -v $outDir:/output \
   -v $DATADIR:/tfold-src/data \

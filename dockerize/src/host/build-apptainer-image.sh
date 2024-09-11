@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 set -e
 
@@ -61,7 +61,7 @@ function getStemName() {
 BASE=$(dirname $(realpath $0))
 
 # NOTE: Change this ROOT path to your project root path
-ROOT="/home/lilian/TCR_interface/tfold-release"
+ROOT="/home/zcbtlm0/Scratch/tfold-release"
 
 ##############################################################################
 # MAIN                                                                       #
